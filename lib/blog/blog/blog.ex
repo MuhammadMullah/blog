@@ -38,6 +38,16 @@ defmodule Blog.Blog do
   def get_post!(id), do: Repo.get!(Post, id)
 
   @doc """
+  get post with
+  iex> get_post(1)
+  %Post{}
+
+  iex> get_post(112)
+  nil
+  """
+  def get_post(id), do: Repo.get(Post, id)
+
+  @doc """
   Creates a post.
 
   ## Examples
