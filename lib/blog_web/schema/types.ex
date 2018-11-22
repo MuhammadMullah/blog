@@ -14,4 +14,10 @@ defmodule BlogWeb.Schema.Types do
     field :body, :string
     field :tags, :string
   end
+
+  input_object :update_post_params do
+    field :title, :string
+    field :body, :string
+    field :tags, :string
+  end
 end
