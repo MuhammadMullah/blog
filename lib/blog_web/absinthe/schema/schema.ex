@@ -10,6 +10,7 @@ defmodule BlogWeb.Absinthe.Schema do
 
     field :post, type: :post do
       arg(:id, non_null(:id))
+      middleware(BlogWeb.Middleware.Authorize)
       resolve(&Blog.Blog.PostResolver.find/2)
     end
 
