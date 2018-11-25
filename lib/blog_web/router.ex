@@ -22,6 +22,6 @@ defmodule BlogWeb.Router do
   # Other scopes may use custom stacks.
   scope "/api" do
     pipe_through :api
-    forward "/graphql", Absinthe.Plug.GraphiQL, schema: BlogWeb.Schema
+    forward "/graphql", Absinthe.Plug.GraphiQL, schema: BlogWeb.Absinthe.Schema
   end
 end

@@ -1,4 +1,4 @@
-defmodule BlogWeb.Schema.Types do
+defmodule BlogWeb.Absinthe.Schema.Types do
   use Absinthe.Schema.Notation
   use Absinthe.Ecto, repo: Blog.Repo
 
