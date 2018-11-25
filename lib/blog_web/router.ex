@@ -11,6 +11,8 @@ defmodule BlogWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug(KoobaServer.Guardian.AuthPipeline)
+    plug BlogWeb.Plugs.AuthContext
   end
 
   scope "/", BlogWeb do

@@ -38,6 +38,19 @@ defmodule Blog.Account do
   def get_user!(id), do: Repo.get!(User, id)
 
   @doc """
+  Get user by email
+
+  iex> get_user_by_email("a@gmail.com")
+  %User{}
+
+  iex> get_user_by_email(a@gmail.com")
+    nil
+
+  """
+
+  def get_user_by_email(email), do: Repo.get_by(User, email: email)
+
+  @doc """
   Creates a user.
 
   ## Examples

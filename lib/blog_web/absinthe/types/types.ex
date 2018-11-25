@@ -15,6 +15,10 @@ defmodule BlogWeb.Absinthe.Schema.Types do
     field :tags, :string
   end
 
+  object :session do
+    field :token, :string
+  end
+
   input_object :update_post_params do
     field :title, :string
     field :body, :string

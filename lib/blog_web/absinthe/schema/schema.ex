@@ -4,12 +4,21 @@ defmodule BlogWeb.Absinthe.Schema do
 
   query do
     field :posts, list_of(:post) do
+      middleware(BlogWeb.Middleware.Authorize)
       resolve(&Blog.Blog.PostResolver.all/2)
     end
 
     field :post, type: :post do
       arg(:id, non_null(:id))
       resolve(&Blog.Blog.PostResolver.find/2)
+    end
+
+    # user query
+    field :login, type: :session do
+      arg(:email, non_null(:string))
+      arg(:password, non_null(:string))
+
+      resolve(&Blog.Account.UserResolver.login/2)
     end
 
     mutation do
@@ -41,18 +50,6 @@ defmodule BlogWeb.Absinthe.Schema do
         arg(:password, non_null(:string))
 
         resolve(&Blog.Account.UserResolver.create/2)
-      end
-    end
-  end
-
-  def handle_errors(fun) do
-    fn source, args, info ->
-      case Absinthe.Resolution.call(fun, source, args, info) do
-        {:error, %Ecto.Changeset{} = changeset} ->
-          Blog.Helpers.ErrorHelper.format_changeset(changeset)
-
-        val ->
-          val
       end
     end
   end
