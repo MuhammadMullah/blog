@@ -17,5 +17,6 @@ defmodule Blog.Blog.Post do
     post
     |> cast(attrs, [:title, :body, :tags])
     |> validate_required([:title, :body, :tags])
+    |> assoc_constraint(:user)
   end
 end

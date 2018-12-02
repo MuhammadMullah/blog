@@ -8,7 +8,7 @@
   - [x] Login.
   - [x] Authenticating Posts.
   - [x] Authenticating Create Post.
-  - [ ] Create user post relationship.
+  - [x] Create user post relationship.
   - [ ] Paginating blog posts.
   - [ ] Add timestamp to types.
   - [ ] Adding screenshot to ReadMe.

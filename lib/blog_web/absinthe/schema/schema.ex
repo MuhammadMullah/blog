@@ -4,8 +4,12 @@ defmodule BlogWeb.Absinthe.Schema do
 
   query do
     field :posts, list_of(:post) do
-      middleware(BlogWeb.Middleware.Authorize)
       resolve(&Blog.Blog.PostResolver.all/2)
+    end
+
+    field :user_posts, list_of(:post) do
+      middleware(BlogWeb.Middleware.Authorize)
+      resolve(&Blog.Blog.PostResolver.user_all/2)
     end
 
     field :post, type: :post do

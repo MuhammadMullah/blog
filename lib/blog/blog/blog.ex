@@ -7,6 +7,7 @@ defmodule Blog.Blog do
   alias Blog.Repo
 
   alias Blog.Blog.Post
+  alias Blog.Account.User
 
   @doc """
   Returns the list of posts.
@@ -48,19 +49,36 @@ defmodule Blog.Blog do
   def get_post(id), do: Repo.get(Post, id)
 
   @doc """
+  get post of a single user
+
+  iex> get_user_posts(User)
+  [] | [%Posts{}]
+  """
+
+  def get_user_posts(%User{} = current_user) do
+    posts =
+      current_user
+      |> Ecto.assoc(:posts)
+      |> Repo.all()
+
+    posts
+  end
+
+  @doc """
   Creates a post.
 
   ## Examples
 
-      iex> create_post(%{field: value})
+      iex> create_post(%User{}, %{field: value})
       {:ok, %Post{}}
 
       iex> create_post(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_post(attrs \\ %{}) do
-    %Post{}
+  def create_post(%User{} = user, attrs \\ %{}) do
+    user
+    |> Ecto.build_assoc(:posts)
     |> Post.changeset(attrs)
     |> Repo.insert()
   end
