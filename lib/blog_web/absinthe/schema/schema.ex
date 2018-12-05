@@ -3,16 +3,24 @@ defmodule BlogWeb.Absinthe.Schema do
   import_types(BlogWeb.Absinthe.Schema.Types)
 
   query do
-    field :posts, list_of(:post) do
-      resolve(&Blog.Blog.PostResolver.all/2)
+    field :user, type: :user do
+      middleware(BlogWeb.Middleware.Authorize)
+      resolve(&Blog.Account.UserResolver.view/2)
     end
 
-    field :user_posts, list_of(:post) do
+    field :posts, list_of(:post) do
+      @desc "List user posts"
       middleware(BlogWeb.Middleware.Authorize)
       resolve(&Blog.Blog.PostResolver.user_all/2)
     end
 
+    field :all_posts, list_of(:post) do
+      @desc "List all post from users"
+      resolve(&Blog.Blog.PostResolver.all/2)
+    end
+
     field :post, type: :post do
+      @desc "List single post"
       arg(:id, non_null(:id))
       middleware(BlogWeb.Middleware.Authorize)
       resolve(&Blog.Blog.PostResolver.find/2)

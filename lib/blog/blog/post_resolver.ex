@@ -7,9 +7,9 @@ defmodule Blog.Blog.PostResolver do
   end
 
   def user_all(_args, %{context: %{current_user: current_user}}) do
-    posts = current_user |> Blog.get_user_posts()
+    # posts = current_user |> Blog.get_user_posts()
 
-    {:ok, posts}
+    {:ok, Blog.list_posts()}
   end
 
   def find(%{id: id}, _info) do

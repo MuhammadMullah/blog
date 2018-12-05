@@ -11,4 +11,8 @@ defmodule Blog.Account.UserResolver do
       {:ok, %{token: jwt}}
     end
   end
+
+  def view(_args, %{context: %{current_user: current_user}}) do
+    {:ok, current_user}
+  end
 end

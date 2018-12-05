@@ -6,6 +6,7 @@ defmodule BlogWeb.Absinthe.Schema.Types do
     field :id, :id
     field :username, :string
     field :email, :string
+    field :post, list_of(:post), resolve: assoc(:posts)
   end
 
   object :post do
@@ -13,6 +14,7 @@ defmodule BlogWeb.Absinthe.Schema.Types do
     field :title, :string
     field :body, :string
     field :tags, :string
+    field :user, type: :user, resolve: assoc(:user)
   end
 
   object :session do
