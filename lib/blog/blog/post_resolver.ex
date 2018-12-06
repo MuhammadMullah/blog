@@ -2,14 +2,12 @@ defmodule Blog.Blog.PostResolver do
   alias Blog.Helpers
   alias Blog.Blog
 
-  def all(_arg, _info) do
-    {:ok, Blog.list_posts()}
+  def all(%{offset: offset}, _info) do
+    {:ok, Blog.list_posts(offset)}
   end
 
-  def user_all(_args, %{context: %{current_user: current_user}}) do
-    # posts = current_user |> Blog.get_user_posts()
-
-    {:ok, Blog.list_posts()}
+  def user_all(%{offset: offset}, %{context: %{current_user: current_user}}) do
+    {:ok, Blog.get_user_posts(current_user, offset)}
   end
 
   def find(%{id: id}, _info) do

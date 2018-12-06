@@ -18,8 +18,11 @@ defmodule Blog.Blog do
       [%Post{}, ...]
 
   """
-  def list_posts do
-    Repo.all(Post)
+  def list_posts(offset \\ 0) do
+    Post
+    |> order_by(desc: :inserted_at)
+    |> Repo.paginate(offset)
+    |> Repo.all()
   end
 
   @doc """
@@ -55,10 +58,11 @@ defmodule Blog.Blog do
   [] | [%Posts{}]
   """
 
-  def get_user_posts(%User{} = current_user) do
+  def get_user_posts(%User{} = current_user, offset \\ 0) do
     posts =
       current_user
       |> Ecto.assoc(:posts)
+      |> Repo.paginate(offset)
       |> Repo.all()
 
     posts

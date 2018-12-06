@@ -10,12 +10,16 @@ defmodule BlogWeb.Absinthe.Schema do
 
     field :posts, list_of(:post) do
       @desc "List user posts"
+      arg(:offset, :integer, default_value: 0)
+
       middleware(BlogWeb.Middleware.Authorize)
       resolve(&Blog.Blog.PostResolver.user_all/2)
     end
 
     field :all_posts, list_of(:post) do
       @desc "List all post from users"
+      arg(:offset, :integer, default_value: 0)
+
       resolve(&Blog.Blog.PostResolver.all/2)
     end
 
