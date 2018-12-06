@@ -1,11 +1,29 @@
 defmodule BlogWeb.Absinthe.Schema do
   use Absinthe.Schema
+
+  import_types(Absinthe.Type.Custom)
   import_types(BlogWeb.Absinthe.Schema.Types)
+
+  alias Blog.{Blog, Account}
+
+  def context(ctx) do
+    loader =
+      Dataloader.new()
+      |> Dataloader.add_source(Blog, Blog.data())
+      # Foo source could be a Redis source
+      |> Dataloader.add_source(Account, Account.data())
+
+    Map.put(ctx, :loader, loader)
+  end
+
+  def plugins do
+    [Absinthe.Middleware.Dataloader] ++ Absinthe.Plugin.defaults()
+  end
 
   query do
     field :user, type: :user do
       middleware(BlogWeb.Middleware.Authorize)
-      resolve(&Blog.Account.UserResolver.view/2)
+      resolve(&Account.UserResolver.view/2)
     end
 
     field :posts, list_of(:post) do
@@ -13,21 +31,21 @@ defmodule BlogWeb.Absinthe.Schema do
       arg(:offset, :integer, default_value: 0)
 
       middleware(BlogWeb.Middleware.Authorize)
-      resolve(&Blog.Blog.PostResolver.user_all/2)
+      resolve(&Blog.PostResolver.user_all/2)
     end
 
     field :all_posts, list_of(:post) do
       @desc "List all post from users"
       arg(:offset, :integer, default_value: 0)
 
-      resolve(&Blog.Blog.PostResolver.all/2)
+      resolve(&Blog.PostResolver.all/2)
     end
 
     field :post, type: :post do
       @desc "List single post"
       arg(:id, non_null(:id))
       middleware(BlogWeb.Middleware.Authorize)
-      resolve(&Blog.Blog.PostResolver.find/2)
+      resolve(&Blog.PostResolver.find/2)
     end
 
     # user query
@@ -35,7 +53,7 @@ defmodule BlogWeb.Absinthe.Schema do
       arg(:email, non_null(:string))
       arg(:password, non_null(:string))
 
-      resolve(&Blog.Account.UserResolver.login/2)
+      resolve(&Account.UserResolver.login/2)
     end
 
     mutation do
@@ -44,19 +62,19 @@ defmodule BlogWeb.Absinthe.Schema do
         arg(:body, non_null(:string))
         arg(:tags, non_null(:string))
 
-        resolve(&Blog.Blog.PostResolver.create/2)
+        resolve(&Blog.PostResolver.create/2)
       end
 
       field :update_post, type: :post do
         arg(:id, non_null(:id))
         arg(:post, :update_post_params)
 
-        resolve(&Blog.Blog.PostResolver.update/2)
+        resolve(&Blog.PostResolver.update/2)
       end
 
       field :delete_post, type: :post do
         arg(:id, non_null(:id))
-        resolve(&Blog.Blog.PostResolver.delete/2)
+        resolve(&Blog.PostResolver.delete/2)
       end
 
       # users fields
@@ -66,7 +84,7 @@ defmodule BlogWeb.Absinthe.Schema do
         arg(:email, non_null(:string))
         arg(:password, non_null(:string))
 
-        resolve(&Blog.Account.UserResolver.create/2)
+        resolve(&Account.UserResolver.create/2)
       end
     end
   end

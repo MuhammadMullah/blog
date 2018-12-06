@@ -49,7 +49,8 @@ defmodule Blog.MixProject do
       {:absinthe_ecto, "~> 0.1.3"},
       {:comeonin, "~> 4.0"},
       {:argon2_elixir, "~> 1.2"},
-      {:guardian, "~> 1.0"}
+      {:guardian, "~> 1.0"},
+      {:dataloader, "~> 1.0.1"}
     ]
   end
 

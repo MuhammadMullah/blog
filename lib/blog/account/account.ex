@@ -50,7 +50,6 @@ defmodule Blog.Account do
 
   def get_user_by_email(email), do: Repo.get_by(User, email: email)
 
-
   @doc """
   Creates a user.
 
@@ -114,5 +113,13 @@ defmodule Blog.Account do
   """
   def change_user(%User{} = user) do
     User.changeset(user, %{})
+  end
+
+  def data do
+    Dataloader.Ecto.new(Repo, query: &query/2)
+  end
+
+  def query(queryable, _) do
+    queryable
   end
 end

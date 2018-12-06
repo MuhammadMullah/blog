@@ -5,7 +5,7 @@ defmodule Blog.Repo do
 
   import Ecto.Query, warn: false
 
-  @per_page 1
+  @per_page 5
 
   def paginate(query, offset) do
     from r in query, offset: ^offset, limit: @per_page
@@ -15,6 +15,9 @@ defmodule Blog.Repo do
     one(from(r in query, select: count("*")))
   end
 
+  @doc """
+  use this if you wish to return error when nothing is returned
+  """
   def fetch(query) do
     case all(query) do
       [] -> {:error, query}

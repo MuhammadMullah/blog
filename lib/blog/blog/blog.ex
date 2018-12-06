@@ -6,8 +6,7 @@ defmodule Blog.Blog do
   import Ecto.Query, warn: false
   alias Blog.Repo
 
-  alias Blog.Blog.Post
-  alias Blog.Account.User
+  alias Blog.{Blog, Account}
 
   @doc """
   Returns the list of posts.
@@ -58,7 +57,7 @@ defmodule Blog.Blog do
   [] | [%Posts{}]
   """
 
-  def get_user_posts(%User{} = current_user, offset \\ 0) do
+  def get_user_posts(%Account.User{} = current_user, offset \\ 0) do
     posts =
       current_user
       |> Ecto.assoc(:posts)
@@ -80,10 +79,10 @@ defmodule Blog.Blog do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_post(%User{} = user, attrs \\ %{}) do
+  def create_post(%Account.User{} = user, attrs \\ %{}) do
     user
     |> Ecto.build_assoc(:posts)
-    |> Post.changeset(attrs)
+    |> Blog.Post.changeset(attrs)
     |> Repo.insert()
   end
 
@@ -99,9 +98,9 @@ defmodule Blog.Blog do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_post(%Post{} = post, attrs) do
+  def update_post(%Blog.Post{} = post, attrs) do
     post
-    |> Post.changeset(attrs)
+    |> Blog.Post.changeset(attrs)
     |> Repo.update()
   end
 
@@ -117,7 +116,7 @@ defmodule Blog.Blog do
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_post(%Post{} = post) do
+  def delete_post(%Blog.Post{} = post) do
     Repo.delete(post)
   end
 
@@ -128,9 +127,16 @@ defmodule Blog.Blog do
 
       iex> change_post(post)
       %Ecto.Changeset{source: %Post{}}
-
   """
-  def change_post(%Post{} = post) do
-    Post.changeset(post, %{})
+  def change_post(%Blog.Post{} = post) do
+    Blog.Post.changeset(post, %{})
+  end
+
+  def data do
+    Dataloader.Ecto.new(Repo, query: &query/2)
+  end
+
+  def query(queryable, _) do
+    queryable
   end
 end

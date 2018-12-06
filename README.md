@@ -9,8 +9,8 @@
   - [x] Authenticating Posts.
   - [x] Authenticating Create Post.
   - [x] Create user post relationship.
-  - [ ] Paginating blog posts.
-  - [ ] Add timestamp to types.
+  - [x] Paginating blog posts.
+  - [x] Add timestamp to types.
   - [ ] Adding screenshot to ReadMe.
   - [ ] Create react native client.
   - [ ] Dockerlize.
