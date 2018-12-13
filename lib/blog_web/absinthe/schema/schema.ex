@@ -6,19 +6,6 @@ defmodule BlogWeb.Absinthe.Schema do
 
   alias Blog.{Blog, Account}
 
-  def context(ctx) do
-    loader =
-      Dataloader.new()
-      |> Dataloader.add_source(Blog, Blog.data())
-      # Foo source could be a Redis source
-      |> Dataloader.add_source(Account, Account.data())
-
-    Map.put(ctx, :loader, loader)
-  end
-
-  def plugins do
-    [Absinthe.Middleware.Dataloader] ++ Absinthe.Plugin.defaults()
-  end
 
   query do
     field :user, type: :user do

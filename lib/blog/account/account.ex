@@ -114,12 +114,4 @@ defmodule Blog.Account do
   def change_user(%User{} = user) do
     User.changeset(user, %{})
   end
-
-  def data do
-    Dataloader.Ecto.new(Repo, query: &query/2)
-  end
-
-  def query(queryable, _) do
-    queryable
-  end
 end

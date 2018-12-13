@@ -131,12 +131,4 @@ defmodule Blog.Blog do
   def change_post(%Blog.Post{} = post) do
     Blog.Post.changeset(post, %{})
   end
-
-  def data do
-    Dataloader.Ecto.new(Repo, query: &query/2)
-  end
-
-  def query(queryable, _) do
-    queryable
-  end
 end
