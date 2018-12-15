@@ -11,11 +11,28 @@
   - [x] Create user post relationship.
   - [x] Paginating blog posts.
   - [x] Add timestamp to types.
-  - [ ] Adding screenshot to ReadMe.
+  - [x] Adding screenshot to ReadMe.
   - [ ] Create react native client.
   - [ ] Dockerlize.
 
 ---
+
+## SCREENSHOTS
+
+##### Login Page
+![Alt text](githubImages/login.png?raw=true "Login Screen")
+
+##### Posts with there users
+![Alt text](githubImages/post_user.png?raw=true "post and user")
+
+##### All possible queries
+![Alt text](githubImages/possible_queries.png?raw=true "all queries")
+
+##### All possible mutations
+![Alt text](githubImages/mutations.png?raw=true "all mutations")
+
+
+
 
 To start your Phoenix server:
 
