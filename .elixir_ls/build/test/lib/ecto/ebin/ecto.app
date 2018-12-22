@@ -82,5 +82,5 @@
                         'Elixir.Poison.Encoder.Ecto.Association.NotLoaded',
                         'Elixir.Poison.Encoder.Ecto.Schema.Metadata']},
               {registered,[]},
-              {vsn,"3.0.3"},
+              {vsn,"3.0.5"},
               {mod,{'Elixir.Ecto.Application',[]}}]}.

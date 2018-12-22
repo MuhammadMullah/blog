@@ -6,5 +6,5 @@
                         'Elixir.Plug.Cowboy.Stream',
                         'Elixir.Plug.Cowboy.Translator']},
               {registered,[]},
-              {vsn,"2.0.0"},
+              {vsn,"2.0.1"},
               {mod,{'Elixir.Plug.Cowboy',[]}}]}.

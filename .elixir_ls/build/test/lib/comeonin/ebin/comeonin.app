@@ -3,4 +3,4 @@
               {description,"Password hashing library for Elixir.\n"},
               {modules,['Elixir.Comeonin','Elixir.Comeonin.Argon2']},
               {registered,[]},
-              {vsn,"4.1.1"}]}.
+              {vsn,"4.1.2"}]}.
