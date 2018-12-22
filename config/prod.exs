@@ -19,7 +19,7 @@ config :logger, level: :info
 
 
 config :blog, BlogWeb.Endpoint,
-  secret_key_base: "ULzSrZz55aZXIlepDYLpeGKMnPXyHY0Dica0Pb8qX0NB6GguJm6crnl01IDYKKdQ"
+  secret_key_base: "KgLC/0HOi2RRuvfnIVIYa/PvkFfiMaIYfJTh4kfwgEUtdqe29YvFjvTnDLEaRmuS"
 
 # Configure your database
 config :blog, Blog.Repo,
