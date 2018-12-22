@@ -34,7 +34,7 @@
 
 
 
-How to run this project:
+## How to run this project:
 
   * Make sure you have installed docker. https://www.docker.com
   * Make sure docker compose is installed on your machine. https://docs.docker.com/compose
@@ -46,3 +46,7 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ## NOTES
   * Will write an article on how to Dockerlize a phoenix project soon.
+
+## Learn more about docker and phoenix
+* https://subvisual.co/blog/posts/137-tutorial-deploying-elixir-applications-with-docker-and-digital-ocean/
+* https://hexdocs.pm/distillery/guides/working_with_docker.html
