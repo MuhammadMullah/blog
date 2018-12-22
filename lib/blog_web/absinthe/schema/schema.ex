@@ -1,6 +1,8 @@
 defmodule BlogWeb.Absinthe.Schema do
   use Absinthe.Schema
 
+  require Logger
+
   import_types(Absinthe.Type.Custom)
   import_types(BlogWeb.Absinthe.Schema.Types)
 
@@ -8,6 +10,7 @@ defmodule BlogWeb.Absinthe.Schema do
 
 
   query do
+    Logger.info("Magic mike")
     field :user, type: :user do
       middleware(BlogWeb.Middleware.Authorize)
       resolve(&Account.UserResolver.view/2)

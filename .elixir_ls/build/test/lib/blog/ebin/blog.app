@@ -1,6 +1,6 @@
 {application,blog,
              [{applications,[kernel,stdlib,elixir,logger,runtime_tools,
-                             absinthe_plug,gettext,jason,poison,argon2_elixir,
+                             absinthe_plug,gettext,jason,poison,bcrypt_elixir,
                              comeonin,dataloader,absinthe,absinthe_ecto,
                              phoenix_pubsub,postgrex,ecto_sql,phoenix_html,
                              plug_cowboy,phoenix,mix_docker,guardian,

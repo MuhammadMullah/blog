@@ -10,7 +10,7 @@ services:
       DB_PORT: 5432
 
   web:
-    image: "johninvictus/blog:0.1.0.19-da70650cf7"
+    image: "johninvictus/blog:0.1.0.20-aa6219bf13"
     command: foreground
     depends_on:
       - db

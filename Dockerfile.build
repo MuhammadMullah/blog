@@ -1,12 +1,12 @@
 FROM bitwalker/alpine-elixir-phoenix
 
-ENV HOME=/opt/app/ TERM=xterm
+ ENV HOME=/opt/app/ TERM=xterm
 
-RUN apk update && apk add bash
+# RUN apk update && apk add bash
 ENV MIX_ENV prod
 
 # Add the files to the image
-ADD . .
+COPY . .
 
 # Cache Elixir deps
 RUN mix deps.get --only prod

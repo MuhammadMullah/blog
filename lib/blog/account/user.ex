@@ -26,7 +26,7 @@ defmodule Blog.Account.User do
   defp put_pass_hash(changeset) do
     case changeset do
       %Ecto.Changeset{valid?: true, changes: %{password: pass}} ->
-        put_change(changeset, :password_hash, Comeonin.Argon2.hashpwsalt(pass))
+        put_change(changeset, :password_hash, Comeonin.Bcrypt.hashpwsalt(pass))
 
       _ ->
         changeset

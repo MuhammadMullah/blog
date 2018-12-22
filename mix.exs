@@ -48,7 +48,7 @@ defmodule Blog.MixProject do
       {:poison, "~> 3.1.0"},
       {:absinthe_ecto, "~> 0.1.3"},
       {:comeonin, "~> 4.0"},
-      {:argon2_elixir, "~> 1.3.3"},
+      {:bcrypt_elixir, "~> 0.12"},
       {:guardian, "~> 1.0"},
       {:dataloader, "~> 1.0.1"},
       {:mix_docker, github: "johninvictus/mix_docker"}

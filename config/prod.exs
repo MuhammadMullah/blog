@@ -17,6 +17,9 @@ config :blog, BlogWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+# in production as building large stacktraces may be expensive.
+config :phoenix, :stacktrace_depth, 20
+
 
 config :blog, BlogWeb.Endpoint,
   secret_key_base: "KgLC/0HOi2RRuvfnIVIYa/PvkFfiMaIYfJTh4kfwgEUtdqe29YvFjvTnDLEaRmuS"
