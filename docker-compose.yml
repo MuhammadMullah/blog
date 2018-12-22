@@ -1,0 +1,22 @@
+version: "3"
+services:
+  db:
+    image: postgres:10.2-alpine
+    environment:
+      DB_HOST: 127.0.0.1
+      POSTGRES_DB: "blog_prod"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      DB_PORT: 5432
+
+  web:
+    image: "johninvictus/blog:0.1.0.1-f2dda6f1d3"
+    command: foreground
+    depends_on:
+      - db
+    ports:
+        - "4000:4000"
+    environment:
+      DATABASE_URL: "ecto://postgres:postgres@db/blog_prod"
+      PORT: 4000
+      POOL_SIZE: 10

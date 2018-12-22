@@ -1,0 +1,12 @@
+{application,mix_docker,
+             [{applications,[kernel,stdlib,elixir,logger,plug_cowboy]},
+              {description,"Put your Elixir app production release inside minimal docker image"},
+              {modules,['Elixir.Mix.Tasks.Docker.Build',
+                        'Elixir.Mix.Tasks.Docker.Customize',
+                        'Elixir.Mix.Tasks.Docker.Init',
+                        'Elixir.Mix.Tasks.Docker.Publish',
+                        'Elixir.Mix.Tasks.Docker.Release',
+                        'Elixir.Mix.Tasks.Docker.Shipit','Elixir.MixDocker',
+                        'Elixir.MixDocker.IdentityPlug']},
+              {registered,[]},
+              {vsn,"0.5.0"}]}.

@@ -17,6 +17,19 @@ config :blog, BlogWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+
+config :blog, BlogWeb.Endpoint,
+  secret_key_base: "ULzSrZz55aZXIlepDYLpeGKMnPXyHY0Dica0Pb8qX0NB6GguJm6crnl01IDYKKdQ"
+
+# Configure your database
+config :blog, Blog.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  url: "ecto://postgres:postgres@db/blog_prod",
+  username: "postgres",
+  password: "postgres",
+  database: "blog_prod",
+  pool_size: 15
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
@@ -68,4 +81,4 @@ config :logger, level: :info
 
 # Finally import the config/prod.secret.exs which should be versioned
 # separately.
-import_config "prod.secret.exs"
+# import_config "prod.secret.exs"

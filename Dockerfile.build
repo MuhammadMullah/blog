@@ -1,0 +1,27 @@
+FROM bitwalker/alpine-elixir-phoenix
+
+ENV HOME=/opt/app/ TERM=xterm
+
+RUN apk update && apk add bash
+ENV MIX_ENV prod
+
+# Add the files to the image
+ADD . .
+
+# Cache Elixir deps
+RUN mix deps.get --only prod
+RUN mix deps.compile
+
+WORKDIR assets
+# Cache Node deps
+RUN npm i
+
+# Compile JavaScript
+RUN npm run deploy
+
+WORKDIR ..
+# Compile app
+RUN mix compile
+RUN mix phx.digest
+
+RUN mix release --env=prod --verbose

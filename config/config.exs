@@ -13,6 +13,7 @@ config :blog,
 # Configures the endpoint
 config :blog, BlogWeb.Endpoint,
   url: [host: "localhost"],
+  server: true,
   secret_key_base: "9hY1TYpcXmf/RD0VpkoOe8V7f8dslKsb/QVDJzVnE/R6jPkTCbLXfgdBAr10YHdb",
   render_errors: [view: BlogWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Blog.PubSub, adapter: Phoenix.PubSub.PG2]
@@ -24,6 +25,10 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+
+# docker mix generated image
+config :mix_docker, image: "johninvictus/blog"
 
 config :blog, Blog.Guardian,
   issuer: "blog",

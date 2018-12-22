@@ -50,7 +50,8 @@ defmodule Blog.MixProject do
       {:comeonin, "~> 4.0"},
       {:argon2_elixir, "~> 1.2"},
       {:guardian, "~> 1.0"},
-      {:dataloader, "~> 1.0.1"}
+      {:dataloader, "~> 1.0.1"},
+      {:mix_docker, github: "johninvictus/mix_docker"}
     ]
   end
 
